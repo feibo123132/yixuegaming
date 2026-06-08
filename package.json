@@ -1,0 +1,11 @@
+{
+  "name": "yixuegaming",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "build": "node scripts/verify-site.mjs",
+    "check": "npm test && npm run build"
+  }
+}

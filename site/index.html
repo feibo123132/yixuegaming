@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>胸痛夜班：STEMI 复诊链</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="cover-panel" aria-label="章节封面">
+        <img src="./assets/images/chapter-cover-night-shift.png" alt="" />
+        <div class="cover-copy">
+          <p class="kicker">西综夜班 / 心血管系统</p>
+          <h1>胸痛夜班：STEMI 复诊链</h1>
+          <p>急诊胸痛通道已经打开。有限行动点内，完成证据、诊断、治疗和复盘。</p>
+          <button id="startRun" class="primary-action" type="button">进入夜班</button>
+        </div>
+      </section>
+
+      <section class="battle-screen is-hidden" id="battleScreen" aria-label="STEMI 战斗界面">
+        <div class="battle-backdrop" aria-hidden="true"></div>
+
+        <aside class="queue-panel">
+          <div class="panel-title">夜班队列</div>
+          <button class="queue-item is-active" type="button">
+            <span id="queueLabel">胸痛 / 40 min</span>
+            <strong>优先级 A</strong>
+          </button>
+          <button class="queue-item" type="button" disabled>
+            <span>腹痛 / 待分诊</span>
+            <strong>锁定</strong>
+          </button>
+          <button class="queue-item" type="button" disabled>
+            <span>晕厥 / 待分诊</span>
+            <strong>锁定</strong>
+          </button>
+        </aside>
+
+        <section class="patient-board">
+          <header class="case-header">
+            <div>
+              <p class="kicker">急诊抢救室 02</p>
+              <h2 id="patientName">患者</h2>
+            </div>
+            <div class="case-clock">
+              <span id="caseTime">00 min</span>
+              <small>再灌注倒计时</small>
+            </div>
+          </header>
+
+          <div class="patient-stage">
+            <img src="./assets/images/stemi-patient-three-states.png" alt="" />
+            <div class="patient-note">
+              <strong id="chiefComplaint"></strong>
+              <span id="caseNarrative"></span>
+            </div>
+          </div>
+
+          <div class="report-grid">
+            <article class="report-card">
+              <span>ECG</span>
+              <p id="ecgReport">尚未检查</p>
+            </article>
+            <article class="report-card">
+              <span>肌钙蛋白</span>
+              <p id="troponinReport">尚未检查</p>
+            </article>
+            <article class="report-card">
+              <span>影像 / 床旁</span>
+              <p id="imagingReport">尚未检查</p>
+            </article>
+          </div>
+        </section>
+
+        <aside class="vitals-panel">
+          <div class="panel-title">生命体征</div>
+          <div class="vital-row">
+            <span>SBP</span>
+            <strong id="systolicBp">--</strong>
+          </div>
+          <div class="vital-row">
+            <span>HR</span>
+            <strong id="heartRate">--</strong>
+          </div>
+          <div class="vital-row">
+            <span>SpO2</span>
+            <strong id="spo2">--</strong>
+          </div>
+
+          <div class="meter-stack">
+            <label>
+              稳定度
+              <span id="stabilityValue">--</span>
+              <meter id="stabilityMeter" min="0" max="100"></meter>
+            </label>
+            <label>
+              缺血进展
+              <span id="ischemiaValue">--</span>
+              <meter id="ischemiaMeter" min="0" max="100"></meter>
+            </label>
+            <label>
+              诊断不确定
+              <span id="uncertaintyValue">--</span>
+              <meter id="uncertaintyMeter" min="0" max="100"></meter>
+            </label>
+            <label>
+              出血风险
+              <span id="bleedingValue">--</span>
+              <meter id="bleedingMeter" min="0" max="100"></meter>
+            </label>
+          </div>
+
+          <div class="resource-box">
+            <span>行动点</span>
+            <strong id="actionPoints">0</strong>
+          </div>
+        </aside>
+
+        <aside class="orders-panel">
+          <div class="panel-title">行动记录</div>
+          <ol id="actionLog" class="action-log"></ol>
+        </aside>
+
+        <section class="hand-panel">
+          <div class="hand-header">
+            <div>
+              <p class="kicker">手牌</p>
+              <h3>检查 / 诊断 / 治疗</h3>
+            </div>
+            <button id="resetRun" class="ghost-action" type="button">重开本局</button>
+          </div>
+          <div id="cardHand" class="card-hand"></div>
+        </section>
+
+        <section class="debrief-panel is-hidden" id="debriefPanel" aria-label="战斗复盘">
+          <div class="debrief-card">
+            <div class="grade-badge" id="gradeBadge">A</div>
+            <div>
+              <p class="kicker">病例复盘</p>
+              <h2 id="debriefTitle">患者进入稳定复盘</h2>
+              <p id="debriefSummary"></p>
+            </div>
+            <div>
+              <h3>关键失误</h3>
+              <ul id="mistakeList"></ul>
+            </div>
+            <div>
+              <h3>考试知识点</h3>
+              <ul id="examPointList"></ul>
+            </div>
+            <button id="closeDebrief" class="primary-action" type="button">再来一局</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
